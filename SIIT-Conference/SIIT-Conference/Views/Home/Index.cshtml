@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div id="content">
+
+</div>
+<input type="text" id="myInput" value="Mickey Mouse" />
+
+<button id="set-text" onclick="setText();">Set Text</button>
+<button id="set-html" onclick="setHtml();">Set HTML</button>
+<button id="set-value" onclick="setValue();">Set Value</button>
+
+<button onclick="fillDummyStuff();">Get me from Server </button>
+<button onclick="sendDummyStuff();">Send to Server </button>
+<button onclick="deleteDummyStuff();">Delete </button>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            //debugger;
+            //  sayHello();
+        });
+
+        function setText() {
+            $("#content").text("hello world from js1");
+        }
+
+        function setHtml() {
+            $("#content").html("<b>Hello world bold!</b>");
+        }
+
+        function setValue() {
+            $("#myInput").val("Dolly Duck");
+        }
+
+        function sayHello() {
+            alert("Hello you!");
+        }
+
+        function fillDummyStuff() {
+            $.ajax({
+                method: "GET",
+                url: "/home/dummystuff"
+            })
+                .done(function (data) {
+                    $("#content").text(data);
+                });
+        }
+
+
+        function sendDummyStuff() {
+            $.ajax({
+                method: "POST",
+                url: "/home/dummystuff",
+                data: { name: "John", location: "Boston" }
+            })
+                .done(function (data) {
+                    $("#content").text(data);
+                });
+        }
+
+        function deleteDummyStuff() {
+            $.ajax({
+                method: "DELETE",
+                url: "/home/dummystuff/"+"",
+            })
+                .done(function (data) {
+                    $("#content").text(data);
+                });
+        }
+
+
+ ITempDataDictionary  </script>
+}
